@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from 'react-router-dom';
+
+import Home from './components/Home'
+import Coins from './components/Coins'
+import Exchanges from './components/Exchanges'
+import News from './components/News'
+import CoinDetails from './components/CoinDetails'
+import Header from './components/Header';
+import Loader from './shared/Loader'
+import { CoinContext } from './context/contextApi';
 
 function App() {
+  
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <CoinContext>
+      {/* <Loader/> */}
+      <Header/>
+      <Routes>
+        <Route path='/' element={<Home/>} />
+        <Route path='coins' element={<Coins/>} />
+        <Route path='exchanges' element={<Exchanges/>} />
+        <Route path='news' element={<News/>} />
+        <Route path='coins/:id' element={<CoinDetails/>} />
+      </Routes>
+    </CoinContext>
+
   );
 }
 
